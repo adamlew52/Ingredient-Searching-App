@@ -12,14 +12,14 @@
             -
 
 
-<Webscraping>
-    <WebscraperMain.py>
-        - brings it all together lol. watch a youtube video on webscraping and update from here 
-        - is run by the processor in order to start webscraping for the correct data
+<Webscraping and Googling>
+    - figure out why all the links arent opening and pulling the data
+    <parsing app>
+        - make an app that parses the html/css/js code on the site for the the necessary data
+    <common keywords db>
+        - start with a training data db of user-selected words that match what is necessary to find the correct data out of the webpage 
+        - passes it to the parsing app for use
 
-    <ImportAndProcess.py>
-        - has the functions that run in WebscraperMain.py
-        - places the words into a formulaic sentence structure
 
 <GUI>
 
