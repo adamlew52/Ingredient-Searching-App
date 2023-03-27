@@ -23,6 +23,13 @@ def GoogleScrape(URL,specifier):
     soup = bs(htmlText, 'lxml')
     jobs = soup.find_all('h3', class_= 'LC20lb MBeuO DKV0Md')
 
+def FindPhotos(ingredient, URL):
+    print(f"finding photos regarding {ingredient}")
+    htmlText = requests.get(URL).text
+    soup = bs(htmlText, 'lxml')
+    jobs = soup.find_all('h3', class_= 'LC20lb MBeuO DKV0Md')
+    
+
 #def GoogleSearch():
 #    SearchResults = (S.Search(10,10))
 #    for result in SearchResults:

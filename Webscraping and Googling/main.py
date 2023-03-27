@@ -66,7 +66,8 @@ def findBodyEffects(ingredient):
 
 def findFoodEffects(ingredient):
     print(f'Finding the effects that {ingredient} has on the food item...')
-    GoogleIngredient(ingredient, '\'s effect on food')
+    content = GoogleIngredient(ingredient, '\'s effect on food')
+    return content
 
 def findChemicalComp(ingredient):
     print(f'Finding the Chemical Composition of {ingredient}...')
@@ -102,15 +103,16 @@ def main():
     for source in SourceList:
         print(f'Finding info from: {source}')
         #ReadWebpage(source)
-        OpenWebpage(source)
-        #print(f'was the string contain the element?....................................... {CheckRepeatURL(source, SourceList)}'
+        #OpenWebpage(source)
+        #print(f'was the string contain the element?....................................... {CheckRepeatURL(source, SourceList)}')
     print("---------------------------------------------------------------------------------")
 
 def UnitTest():
     ingredient = "niacin"
     print(f'performing unit testing...\n')
-    SourceList = findBodyEffects(ingredient)
-    #SourceList = findFoodEffects(ingredient)
+
+    #SourceList = findBodyEffects(ingredient)
+    SourceList = findFoodEffects(ingredient)
     #SourceList = findChemicalComp(ingredient)
     #SourceList = findPosNeg(ingredient)
     #SourceList = findUses(ingredient)
