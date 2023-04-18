@@ -1,7 +1,8 @@
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // For more info: https://go.microsoft.com/fwlink/?linkid=830387
+    // TODO: add the python pathing so they can use functions across directories
     "version": "0.2.0",
     "configurations": [
         {
@@ -11,6 +12,15 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "Attach by Process ID",
+            "processId": "${command:PickProcess}",
+            "request": "attach",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
         }
     ]
 }
