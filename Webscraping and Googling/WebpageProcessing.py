@@ -24,6 +24,7 @@ def ReadCommonWordDoc():
     files = GetDocInfo()
     
     for file in files:
+        print(file)
         fileName = files[file]
         docName = (f'Webscraping and Googling\CommonWording\{fileName}')
         print(f'opening {file} the search source material')
@@ -39,4 +40,4 @@ def CommonWordSearch(document):
 def KeywordFrequency():
     print("Finding the frequency of the words...")
 
-print(ReadCommonWordDoc())
+#print(ReadCommonWordDoc())

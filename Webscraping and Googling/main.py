@@ -11,9 +11,11 @@ def GoogleIngredient(ingredient, useCase):
     searchCrit += useCase
     print(searchCrit)
 
+    results = 10 #change me for more or less sources
+
     print(f'finding resources on {ingredient}...')
-    resultsNum = 10
-    resultsStop = 10
+    resultsNum = results
+    resultsStop = results
     sourceList = s.Search(searchCrit,resultsNum, resultsStop)
     #print(f'The following resources were found for {ingredient}:\n{sourceList}')
     #print(type(sourceList))
@@ -108,11 +110,13 @@ def main():
     print("---------------------------------------------------------------------------------")
 
 def UnitTest():
-    ingredient = "niacin"
+    #ingredient = "niacin"
+    print("Please input the name of the object you are looking to research: ")
+    ingredient = input("  > ")
     print(f'performing unit testing...\n')
 
-    #SourceList = findBodyEffects(ingredient)
-    SourceList = findFoodEffects(ingredient)
+    SourceList = findBodyEffects(ingredient)
+    #SourceList = findFoodEffects(ingredient)
     #SourceList = findChemicalComp(ingredient)
     #SourceList = findPosNeg(ingredient)
     #SourceList = findUses(ingredient)

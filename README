@@ -1,0 +1,14 @@
+Written by Adam Lewis for House of Demeter LLC
+
+To run the app:
+    1. open a new window of your browser of choice. only leave 1 new tab open on this and make sure it is the most recent window open, as the service automatically opens the sources in the most recent window
+    2. run main.py in Webscraping and Googling
+    3. input the thing you are looking to search for
+    4. enjoy the resources
+
+
+How to change the number of sources found:
+    1. open main.py
+    2. go to the function GoogleIngredient(ingredient, useCase)
+    3. modify the value next to the variable "results" on line 14
+    4. run the app using the above instructions
