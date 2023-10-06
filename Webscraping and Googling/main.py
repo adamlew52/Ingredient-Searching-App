@@ -4,6 +4,9 @@ import Webscrape as w
 import webbrowser as wb
 import tldextract as tld
 import WebpageProcessing as wp
+from bs4 import BeautifulSoup as bs
+import Image_Processing as imgproc
+
 
 #start data processing---------------------------------------------------------------------------------
 def GoogleIngredient(ingredient, useCase):
@@ -11,12 +14,11 @@ def GoogleIngredient(ingredient, useCase):
     searchCrit += useCase
     print(searchCrit)
 
-    results = 10 #change me for more or less sources
+    results = 2 #change me for more or less sources
 
-    print(f'finding resources on {ingredient}...')
+    print(f'finding resources on{ingredient}...')
     resultsNum = results
-    resultsStop = results
-    sourceList = s.Search(searchCrit,resultsNum, resultsStop)
+    sourceList = s.Search(searchCrit, resultsNum)
     #print(f'The following resources were found for {ingredient}:\n{sourceList}')
     #print(type(sourceList))
     return sourceList
@@ -61,46 +63,46 @@ def CheckRepeatURL(URL, SourceList):
 
 
 #start search criterion---------------------------------------------------------------------------------
-def findBodyEffects(ingredient):
-    print(f'Finding the effects that {ingredient} has on the body...')
-    content = GoogleIngredient(ingredient, '\'s effect on the body')
-    return content
+def customsearches():
+    def findBodyEffects(ingredient):
+        print(f'Finding the effects that {ingredient} has on the body...')
+        content = GoogleIngredient(ingredient, '\'s effect on the body')
+        return content
 
-def findFoodEffects(ingredient):
-    print(f'Finding the effects that {ingredient} has on the food item...')
-    content = GoogleIngredient(ingredient, '\'s effect on food')
-    return content
+    def findFoodEffects(ingredient):
+        print(f'Finding the effects that {ingredient} has on the food item...')
+        content = GoogleIngredient(ingredient, '\'s effect on food')
+        return content
 
-def findChemicalComp(ingredient):
-    print(f'Finding the Chemical Composition of {ingredient}...')
-    content = GoogleIngredient(ingredient, '\'s chemical composition')
-    return content
+    def findChemicalComp(ingredient):
+        print(f'Finding the Chemical Composition of {ingredient}...')
+        content = GoogleIngredient(ingredient, '\'s chemical composition')
+        return content
 
-def findPosNeg(ingredient):
-    print(f'Finding the Positive and Negative effects of {ingredient}...')
-    positives = GoogleIngredient(ingredient, '\'s positives')
-    negatives = GoogleIngredient(ingredient, '\'s negatives')
-    return positives, negatives
+    def findPosNeg(ingredient):
+        print(f'Finding the Positive and Negative effects of {ingredient}...')
+        positives = GoogleIngredient(ingredient, '\'s positives')
+        negatives = GoogleIngredient(ingredient, '\'s negatives')
+        return positives, negatives
 
-def findUses(ingredient):
-    print(f'Finding the uses of {ingredient}...')
-    content = GoogleIngredient(ingredient, '\'s uses')
-    return content
-
-def findOtherNames(ingredient):
-    print(f'Finding other names for {ingredient}...')
-    content = GoogleIngredient(ingredient, '\'s other names')
-    return content
+    def findUses(ingredient):
+        print(f'Finding the uses of {ingredient}...')
+        content = GoogleIngredient(ingredient, '\'s uses')
+        return content
+ 
+    def findOtherNames(ingredient):
+        print(f'Finding other names for {ingredient}...')
+        content = GoogleIngredient(ingredient, '\'s other names')
+        return content
 #end search criterion---------------------------------------------------------------------------------
 
-
-def main():
-    ingredient = "niacin"
+def SearchControl(ingredient):
+    #ingredient = "niacin"
     #ingredient = input("please input ingredient: \n>")
-    #SourceList = (GoogleIngredient(ingredient)) #main
+    SourceList = (GoogleIngredient(ingredient, " ")) #main
 
-    SourceList = findBodyEffects(ingredient)
-    wb.open_new("https://www.google.com/")  
+    #SourceList = findUses(ingredient)
+    #wb.open_new("https://www.google.com/")  
     print("---------------------------------------------------------------------------------")
     for source in SourceList:
         print(f'Finding info from: {source}')
@@ -109,17 +111,24 @@ def main():
         #print(f'was the string contain the element?....................................... {CheckRepeatURL(source, SourceList)}')
     print("---------------------------------------------------------------------------------")
 
+def Search_From_Photo(imgPath):
+    imgPathParsed = imgproc.testMode(imgPath)
+    for ingredient in imgPathParsed:
+        SourceList = (GoogleIngredient(ingredient, " "))
+        for source in SourceList:
+            print(f'Finding info from: {source}')
+
 def UnitTest():
     #ingredient = "niacin"
     print("Please input the name of the object you are looking to research: ")
     ingredient = input("  > ")
     print(f'performing unit testing...\n')
 
-    SourceList = findBodyEffects(ingredient)
+    #SourceList = findBodyEffects(ingredient)
     #SourceList = findFoodEffects(ingredient)
     #SourceList = findChemicalComp(ingredient)
     #SourceList = findPosNeg(ingredient)
-    #SourceList = findUses(ingredient)
+    SourceList = customsearches.findUses(ingredient)
     for source in SourceList:
         print(f'Finding info from: {source}')
         #ReadWebpage(source)
@@ -127,5 +136,4 @@ def UnitTest():
         #print(f'was the string contain the element?....................................... {CheckRepeatURL(source, SourceList)}'
     print("---------------------------------------------------------------------------------")
 
-    
-UnitTest()
+
